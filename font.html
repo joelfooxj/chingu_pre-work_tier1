@@ -1,8 +1,9 @@
 <html> 
-    <head> 
+    <head>
+        <script src="https://kit.fontawesome.com/e2fcf635ce.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="font.css">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <script src="font.js" ></script>
     </head>
     <body> 
          <!-- This is the main navbar. Contains the following: 
@@ -20,20 +21,61 @@
         </header>
         <div class= "separator"></div>
         <content> 
-            <div id="mini_nav"> 
-                <input id="search_field" type="text">  
-                <input id="sample_text" type="text">
+            <div id="input_bar"> 
+                <input id="search_field" type="text" placeholder="Search font">  
+                <input id="sample_text" type="text" placeholder="Type something">
                 <select id = "myList">
                     <option value = "20">20px</option>
                     <option value = "24">24px</option>
                     <option value = "32">32px</option>
                     <option value = "40">40px</option>
                 </select>
-
-
+                <div id="color_change"> 
+                    <!-- color selector  -->
+                    <div class="circle" id="circle_black"></div>
+                    <div class="circle" id="circle_white"></div>
+                </div>
+                <div class="button_container"> 
+                    <i id="list_button" class="fas fa-list-ul"></i>
+                </div>
+                <div style="text-align: end;" class="button_container"> 
+                        <i id="reset_button" class="fas fa-redo-alt"></i>
+                </div>
             </div>
+
             <div id="cards">
-                
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div id="font_title">
+                            Roboto
+                        </div>  
+                        <div>
+                            <i class="far fa-plus-circle"></i>
+                        </div>  
+                    </div>
+                    <div style="font-size: 0.8em; color:lightslategrey;"> 
+                        someone
+                    </div>
+                    <div style="font-size:1.4em; margin-top:30px;"> 
+                        example text
+                    </div>
+                </div> 
+                <div class="card">
+                        <div style="display: flex; justify-content: space-between;">
+                            <div id="font_title">
+                                Roboto
+                            </div>  
+                            <div>
+                                <i class="far fa-plus-circle"></i>
+                            </div>  
+                        </div>
+                        <div style="font-size: 0.8em; color:lightslategrey;"> 
+                            someone
+                        </div>
+                        <div style="font-size:1.4em; margin-top:30px;"> 
+                            example text
+                        </div>
+                    </div> 
             </div>
         </content>
     

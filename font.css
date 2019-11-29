@@ -1,6 +1,6 @@
 html {
-    font-family: Arial, Helvetica, sans-serif; 
-    font-size: 0.8em;
+    /* font-family: Arial, Helvetica, sans-serif;  */
+    font-family: Roboto, sans-serif;
 }
 
 a:hover {
@@ -28,12 +28,20 @@ header {
     width: 100%;
 }
 
-#mini_nav{
+#input_bar{
     border: 1px lightslategray solid;
     margin: 20px 20px;
     border-radius: 20px;
-    padding: 2px;
+    padding: 3px 20px;
+    display:flex;
+    
 }
+
+#input_bar input {
+    width:30%;
+    border-right: 1px lightslategray solid;
+    padding-left: 10px;
+} 
 
 input{
     border: transparent;
@@ -43,6 +51,10 @@ input{
     color:lightslategray;
 }
 
+#input_bar select {
+    width:10%;
+} 
+
 select{
     border: transparent;
     background-color: transparent;
@@ -50,7 +62,55 @@ select{
     -webkit-appearance: none;  
     -moz-apperance:none; 
     border-radius: 0px;
+    padding-left: 10px; 
+}
 
+#color_change{
+    width: 10%;
+    display:flex;
+}
+
+.circle{
+    border: 1px lightslategray solid; 
+    width:10px;
+    height:10px;
+    border-radius: 100%;
+    margin:auto 3px;
+}
+
+#circle_black{
+    background-color: black;
+}
+
+#circle_white{
+    background-color: white;
+}
+
+.button_container{
+    width:10%; 
+    font-size: 0.8em;
+    /* cheap work around to vertically align icons */
+    padding-top:4px;
+    text-align: center;
+}
+
+#cards{
+    margin: 20px 20px;
+    display:flex;
+    
+    
+    
+}
+
+.card{
+    border-top: 1px solid lightslategray;
+    height:200px;
+    margin: 20px; 
+    padding-top: 10px; 
+}
+
+#font_title{
+    font-weight: bold;
 }
 
 footer {
@@ -59,14 +119,15 @@ footer {
 }
 
 .navlinks {
-
     vertical-align: bottom;
 }
 
 .navlinks, a{
-    margin: 0px 5px;
+    margin: auto 5px;
     color:inherit;
     text-decoration: none;
+    font-size: 0.9em;
+    
 }
 
 
