@@ -17,6 +17,8 @@ var font_details = [
     {"title": "Montserrat", "name":"Julieta Ulanovsky", "link":"Montserrat"}
 ]
 
+var fontSizeList = ["20px", "24px", "32px", "40px", "60px"];
+
 function createcard(title, name, setFontFamily){
     var newcard = document.createElement("div");
     newcard.setAttribute("class", "card"); 
@@ -45,9 +47,6 @@ function createcard(title, name, setFontFamily){
     return newcard; 
 }
 
-
-
-
 function change_theme(color){
     var reverseColor; 
     if(color === "white"){
@@ -70,27 +69,39 @@ function change_theme(color){
     }
 }
 
-
+function setFontTextSize(){
+    var selectFontSize = document.getElementById("fontSizes"); 
+    var size = selectFontSize.options[selectFontSize.selectedIndex].value; 
+    var fontTexts = document.getElementsByClassName("font_text"); 
+    for(var i = 0; i < fontTexts.length; i++){ 
+        fontTexts[i].style.setFontTextSize = "500px";
+    }
+}
 
 function init(){
-    // add font links 
-    // create and append font cards 
-    // set card font
+    var selectFontSize = document.getElementById("fontSizes"); 
+    for(var i = 0; i < fontSizeList.length; i++){
+        var newOption = document.createElement("option"); 
+        newOption.value = fontSizeList[i]; 
+        newOption.innerText = fontSizeList[i];
+        selectFontSize.appendChild(newOption);
+    }
+    setFontTextSize();
+
     var cards = document.getElementById("cards");
     var fontUrl = font_details[0].link;   
     var newlink = document.createElement("link");
-    for(var i = 0; i < this.font_details.length; i++){
+    for(var i = 0; i < font_details.length; i++){
         var new_title = font_details[i].title;
         var author = font_details[i].name; 
         if(i != 0){
             fontUrl = fontUrl.concat( "|", font_details[i].link);
         }
-        cards.appendChild(this.createcard(new_title, author, new_title));
+        cards.appendChild(createcard(new_title, author, new_title));
     }
     newlink.rel = "stylesheet"; 
     newlink.href = "https://fonts.googleapis.com/css?family=" + fontUrl + "&display=swap";
-    document.getElementsByTagName("head")[0].appendChild(newlink);
-    
+    document.getElementsByTagName("head")[0].appendChild(newlink);    
 }
 
 window.onload = init; 
