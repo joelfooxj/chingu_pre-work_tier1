@@ -104,7 +104,7 @@ select{
 
 #cards{
     margin: 20px 20px;
-    display:flex;
+    
     
     
 }
@@ -114,11 +114,20 @@ select{
     height:200px;
     margin: 10px 10px; 
     padding-top: 10px; 
-    width:100%; 
 }
 
-#font_title{
+.font_title{
     font-weight: bold;
+}
+
+.font_author{
+    font-size: 0.8em;
+    color: lightslategray;
+}
+
+.font_text{
+    font-size: 1.4em;
+    margin-top:30px;
 }
 
 footer {
