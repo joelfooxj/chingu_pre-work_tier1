@@ -82,6 +82,14 @@ select{
     background-color: black;
 }
 
+#circle_black:hover{
+    cursor:pointer;
+}
+
+#circle_white:hover{
+    cursor:pointer;
+}
+
 #circle_white{
     background-color: white;
 }
@@ -99,14 +107,14 @@ select{
     display:flex;
     
     
-    
 }
 
 .card{
     border-top: 1px solid lightslategray;
     height:200px;
-    margin: 20px; 
+    margin: 10px 10px; 
     padding-top: 10px; 
+    width:100%; 
 }
 
 #font_title{
