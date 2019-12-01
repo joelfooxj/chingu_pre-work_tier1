@@ -22,9 +22,9 @@
         <div class= "separator"></div>
         <content> 
             <div id="input_bar"> 
-                <input id="search_field" type="text" placeholder="Search font">  
-                <input id="sample_text" type="text" placeholder="Type something">
-                <select id = "fontSizes"></select>
+                <input id="search_field" type="text" placeholder="Search font" oninput="filterFonts(this.value)"">  
+                <input id="sample_text" type="text" placeholder="Type something" oninput="setFontText(this.value)">
+                <select id = "fontSizes" onchange="setFontTextSize()"></select>
                 <div id="color_change"> 
                     <!-- color selector  -->
                     <div class="circle" id="circle_black" onclick="change_theme('black')"></div>

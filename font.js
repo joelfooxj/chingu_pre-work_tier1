@@ -1,12 +1,3 @@
-// Features to add: 
-// 1. Shrink nav buttons when screen shrink 
-// 2. Card filter with font search Bar
-// 3. Replace text with custom text 
-// 4. font-size of card text
-// 5. black/white switch 
-// 6. list display vs grid display 
-// 7. Reset to original state 
-
 var font_details = [
     {"title": "Roboto", "name":"Christian Robertson", "link": "Roboto"},
     {"title": "Bebas Neue", "name":"Ryoichi Tsunekawa", "link": "Bebas+Neue"},
@@ -14,8 +5,11 @@ var font_details = [
     {"title": "Open Sans", "name":"Steve Matteson", "link":"Open+Sans"},
     {"title": "Lato", "name":"Lukasz Dziedzic", "link":"Lato"},
     {"title": "Gupter", "name":"Octavio Pardo", "link":"Gupter"}, 
-    {"title": "Montserrat", "name":"Julieta Ulanovsky", "link":"Montserrat"}
-]
+    {"title": "Montserrat", "name":"Julieta Ulanovsky", "link":"Montserrat"}, 
+    {"title": "Lora", "name":"Cyreal", "link":"Lora"},
+    {"title": "Muli", "name":"Vernon Adams", "link":"Muli"}, 
+    {"title": "Oxygen", "name":"Vernon Adams", "link":"Oxygen"}
+];
 
 var fontSizeList = ["20px", "24px", "32px", "40px", "60px"];
 
@@ -74,20 +68,62 @@ function setFontTextSize(){
     var size = selectFontSize.options[selectFontSize.selectedIndex].value; 
     var fontTexts = document.getElementsByClassName("font_text"); 
     for(var i = 0; i < fontTexts.length; i++){ 
-        fontTexts[i].style.setFontTextSize = "500px";
+        fontTexts[i].style.fontSize = size; 
     }
 }
 
-function init(){
-    var selectFontSize = document.getElementById("fontSizes"); 
-    for(var i = 0; i < fontSizeList.length; i++){
-        var newOption = document.createElement("option"); 
-        newOption.value = fontSizeList[i]; 
-        newOption.innerText = fontSizeList[i];
-        selectFontSize.appendChild(newOption);
+function setFontText(inputString){
+    var fontTexts = document.getElementsByClassName("font_text"); 
+    for(var i = 0; i < fontTexts.length; i++){ 
+        fontTexts[i].innerText = inputString; 
     }
-    setFontTextSize();
+}
+    
+function fadeInElement(element){
+    var op = 0.1; 
+    element.style.display = "block"; 
+    var timer = setInterval(function (){
+        if (op >= 1){
+            clearInterval(timer);
+        }
+        element.style.opacity = op;
+        //element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op += op * 0.1;
+    }, 2);
+}
 
+function filterFonts(inputString){
+    var card_container = document.getElementById("cards");
+    var cards = document.getElementsByClassName("card");
+    // hide card_container initially 
+    card_container.style.display = "none"; 
+
+    // If inputString is empty, display all cards
+    if (inputString === ""){
+        for(var i = 0; i < cards.length; i++){
+            cards[i].style.display = "block"; 
+        }
+        fadeInElement(card_container);
+        return;
+    }
+
+    inputString = inputString.toLowerCase(); 
+    for(var i = 0; i < cards.length; i++){
+        // get the title 
+        var title = (cards[i].getElementsByClassName("font_title"))[0]
+        // convert title to lowercase 
+        var titleText = title.innerText.toLowerCase(); 
+        // check if startsWith
+        if(titleText.startsWith(inputString)){
+            cards[i].style.display = "block"; 
+        } else {
+            cards[i].style.display = "none"; 
+        }
+    }
+    fadeInElement(card_container);
+}
+
+function init(){
     var cards = document.getElementById("cards");
     var fontUrl = font_details[0].link;   
     var newlink = document.createElement("link");
@@ -101,7 +137,15 @@ function init(){
     }
     newlink.rel = "stylesheet"; 
     newlink.href = "https://fonts.googleapis.com/css?family=" + fontUrl + "&display=swap";
-    document.getElementsByTagName("head")[0].appendChild(newlink);    
+    document.getElementsByTagName("head")[0].appendChild(newlink);   
+    var selectFontSize = document.getElementById("fontSizes"); 
+    for(var i = 0; i < fontSizeList.length; i++){
+        var newOption = document.createElement("option"); 
+        newOption.value = fontSizeList[i]; 
+        newOption.innerText = fontSizeList[i];
+        selectFontSize.appendChild(newOption);
+    }
+    setFontTextSize();
 }
 
 window.onload = init; 
