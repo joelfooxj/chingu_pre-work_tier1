@@ -14,6 +14,7 @@ var font_details = [
 var fontSizeList = ["20px", "24px", "32px", "40px", "60px"];
 
 function createcard(title, name, setFontFamily){
+    let card_container = document.getElementById("cards");     
     var newcard = document.createElement("div");
     newcard.setAttribute("class", "card"); 
     var title_container = document.createElement("div"); 
@@ -51,6 +52,7 @@ function change_theme(color){
 
     document.getElementsByTagName("html")[0].setAttribute("style", "background-color: " + color + ";");
     document.getElementById("list_button").setAttribute("style", "color: " + reverseColor + ";");
+    document.getElementById("grid_button").setAttribute("style", "color: " + reverseColor + ";");
     document.getElementById("reset_button").setAttribute("style", "color: " + reverseColor + ";");
     document.getElementById("search_field").setAttribute("style", "background-color: " + color + ";"); 
     document.getElementById("sample_text").style.color = reverseColor;
@@ -81,13 +83,12 @@ function setFontText(inputString){
     
 function fadeInElement(element){
     var op = 0.1; 
-    element.style.display = "block"; 
+    element.style.display = "flex"; 
     var timer = setInterval(function (){
         if (op >= 1){
             clearInterval(timer);
         }
         element.style.opacity = op;
-        //element.style.filter = 'alpha(opacity=' + op * 100 + ")";
         op += op * 0.1;
     }, 2);
 }
@@ -122,6 +123,65 @@ function filterFonts(inputString){
     }
     fadeInElement(card_container);
 }
+
+window.onresize = function(){
+    // console.log(window.innerWidth); 
+    let navlinks = document.getElementById("navlinks");
+    let header = document.getElementsByTagName("header")[0]; 
+    if(window.innerWidth <= 504){
+        navlinks.style.fontSize = "0.7em"; 
+        header.style.display = "block";
+        navlinks.style.marginTop = "5px";
+    } else {
+        navlinks.style.fontSize = "0.9em"; 
+        header.style.display = "flex";
+        navlinks.style.margin = "auto 0px";
+    }
+
+    let input_bar = document.getElementById("input_bar"); 
+    if(window.innerWidth <= 504){
+        document.getElementById("sample_text").style.display = "none";
+        document.getElementById("fontSizes").style.display = "none"; 
+        document.getElementById("color_change").style.display = "none";
+        document.getElementById("card_display").style.display = "none";
+        document.getElementById("search_field").style.width = "50%";
+        document.getElementById("reset_button").style.width = "50%";
+        document.getElementById("reset_button").style.textAlign = "center"; 
+    } else {
+        document.getElementById("sample_text").style.display = "block";
+        document.getElementById("fontSizes").style.display = "block"; 
+        document.getElementById("color_change").style.display = "flex";
+        document.getElementById("card_display").style.display = "block"; 
+        document.getElementById("search_field").style.width = "30%";
+        document.getElementById("reset_button").style.width = "10%";
+        document.getElementById("reset_button").style.textAlign = "end";                
+    }
+}
+
+function toggleCardDisplay(windowWidth){
+    var grid = document.getElementById("grid_button");
+    var list = document.getElementById("list_button");
+    let grid_display = window.getComputedStyle(grid).getPropertyValue("display");
+    let list_display = window.getComputedStyle(list).getPropertyValue("display");
+    let card_container = document.getElementById("cards"); 
+    let cards = document.getElementsByClassName("card");    
+    if (grid_display == "none"){        
+        grid.style.display = "block"; 
+        list.style.display = "none";
+        for(var i = 0; i < cards.length; i++){
+            cards[i].style.width = "100%"; 
+        }
+    } else if (list_display == "none"){          
+        grid.style.display = "none"; 
+        list.style.display = "block"; 
+        // I need to set the card width according to window width
+        let container_width = window.getComputedStyle(card_container).getPropertyValue("width"); 
+        for(var i = 0; i < cards.length; i++){
+            cards[i].style.width = (parseInt(container_width) - 80) / 4; 
+        }
+    }
+}
+
 
 function init(){
     var cards = document.getElementById("cards");

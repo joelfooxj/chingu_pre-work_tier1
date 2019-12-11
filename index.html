@@ -5,14 +5,11 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
         <script src="font.js" ></script>
     </head>
+
     <body> 
-         <!-- This is the main navbar. Contains the following: 
-        - Logo (aligned left) 
-        - Links: CATALOG FEATURED ARTICLES ABOUT (aligned right)
-        - On small screen, Links will shrink and tuck underneath logo -->
         <header>
             <div style="font-size: 1.4em;"> <b>Google</b> Fonts </div>
-            <div class="navlinks"> 
+            <div id="navlinks"> 
                 <a href="#"> CATALOG </a>
                 <a href="#"> FEATURED </a>
                 <a href="#"> ARTICLES </a>
@@ -26,23 +23,21 @@
                 <input id="sample_text" type="text" placeholder="Type something" oninput="setFontText(this.value)">
                 <select id = "fontSizes" onchange="setFontTextSize()"></select>
                 <div id="color_change"> 
-                    <!-- color selector  -->
                     <div class="circle" id="circle_black" onclick="change_theme('black')"></div>
                     <div class="circle" id="circle_white" onclick="change_theme('white')"></div>
                 </div>
-                <div class="button_container"> 
+                <div id="card_display" class="button_container" onclick="toggleCardDisplay()"> 
                     <i id="list_button" class="fas fa-list-ul"></i>
+                    <i id="grid_button" class="fas fa-border-all"></i>
                 </div>
-                <div style="text-align: end;" class="button_container"> 
-                        <i id="reset_button" class="fas fa-redo-alt"></i>
+                <div id="reset_button" class="button_container"> 
+                        <i class="fas fa-redo-alt"></i>
                 </div>
             </div>
 
-            <div id="cards">
-                
-            </div>
+            <div id="cards"></div>
         </content>
-    
+
         <footer> 
             coded by joelfooxj | 2019 | Chingu Pre-Work Project Tier 1
         </footer>
