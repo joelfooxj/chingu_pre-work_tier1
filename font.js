@@ -18,8 +18,7 @@ function createcard(title, name, setFontFamily){
     var newcard = document.createElement("div");
     newcard.setAttribute("class", "card"); 
     var title_container = document.createElement("div"); 
-    title_container.setAttribute("style", 
-        "display:flex; justify-content: space-between;");
+    title_container.setAttribute("style", "display:flex; justify-content: space-between;");
     title_container.style.fontFamily = setFontFamily;
     newcard.appendChild(title_container); 
     var font_title = document.createElement("div");
@@ -65,9 +64,7 @@ function change_theme(color){
     }
 }
 
-function setFontTextSize(){
-    var selectFontSize = document.getElementById("fontSizes"); 
-    var size = selectFontSize.options[selectFontSize.selectedIndex].value; 
+function setFontTextSize(size){
     var fontTexts = document.getElementsByClassName("font_text"); 
     for(var i = 0; i < fontTexts.length; i++){ 
         fontTexts[i].style.fontSize = size; 
@@ -75,6 +72,9 @@ function setFontTextSize(){
 }
 
 function setFontText(inputString){
+    if(inputString === ""){
+        inputString = "Then came the first night of the falling star."
+    }
     var fontTexts = document.getElementsByClassName("font_text"); 
     for(var i = 0; i < fontTexts.length; i++){ 
         fontTexts[i].innerText = inputString; 
@@ -124,11 +124,40 @@ function filterFonts(inputString){
     fadeInElement(card_container);
 }
 
-window.onresize = function(){
-    // console.log(window.innerWidth); 
+function setCardWidth(){
+    var card_container = document.getElementById("cards");
+    var cards = document.getElementsByClassName("card"); 
+    let container_width = window.getComputedStyle(card_container).getPropertyValue("width");
+    var grid = document.getElementById("grid_button");
+    let grid_display = window.getComputedStyle(grid).getPropertyValue("display");
+    let card_width = ''; 
+    // currently in list display
+    if(grid_display != "none"){
+        for(var i = 0; i < cards.length; i++){
+            card_width = "100%"; 
+        }
+    } else {        
+        if(window.innerWidth <= this.screen.width * 0.4){
+            card_width = "100%";
+        } else if(window.innerWidth > this.screen.width * 0.4 && window.innerWidth <= this.screen.width * 0.5){
+            card_width = (parseInt(container_width) - 80) / 2; 
+        } else if(window.innerWidth > this.screen.width * 0.5 && window.innerWidth <= this.screen.width * 0.75){
+            card_width = (parseInt(container_width) - 80) / 3; 
+        } else if(window.innerWidth > this.screen.width * 0.75 && window.innerWidth <= this.screen.width){
+            card_width = (parseInt(container_width) - 80) / 4; 
+        }
+    }
+
+    for(var i = 0; i < cards.length; i++){
+        cards[i].style.width = card_width; 
+    }
+}
+
+
+function widthChangeLayout(){
     let navlinks = document.getElementById("navlinks");
     let header = document.getElementsByTagName("header")[0]; 
-    if(window.innerWidth <= 504){
+    if(window.innerWidth <= this.screen.width * 0.4){
         navlinks.style.fontSize = "0.7em"; 
         header.style.display = "block";
         navlinks.style.marginTop = "5px";
@@ -138,50 +167,54 @@ window.onresize = function(){
         navlinks.style.margin = "auto 0px";
     }
 
-    let input_bar = document.getElementById("input_bar"); 
-    if(window.innerWidth <= 504){
+    if(window.innerWidth <= this.screen.width * 0.4){
         document.getElementById("sample_text").style.display = "none";
         document.getElementById("fontSizes").style.display = "none"; 
         document.getElementById("color_change").style.display = "none";
         document.getElementById("card_display").style.display = "none";
         document.getElementById("search_field").style.width = "50%";
         document.getElementById("reset_button").style.width = "50%";
-        document.getElementById("reset_button").style.textAlign = "center"; 
+        
     } else {
         document.getElementById("sample_text").style.display = "block";
         document.getElementById("fontSizes").style.display = "block"; 
         document.getElementById("color_change").style.display = "flex";
-        document.getElementById("card_display").style.display = "block"; 
+        document.getElementById("card_display").style.display = "flex"; 
         document.getElementById("search_field").style.width = "30%";
         document.getElementById("reset_button").style.width = "10%";
-        document.getElementById("reset_button").style.textAlign = "end";                
     }
+    this.setCardWidth();
 }
 
-function toggleCardDisplay(windowWidth){
+function toggleCardDisplay(){
     var grid = document.getElementById("grid_button");
     var list = document.getElementById("list_button");
     let grid_display = window.getComputedStyle(grid).getPropertyValue("display");
     let list_display = window.getComputedStyle(list).getPropertyValue("display");
-    let card_container = document.getElementById("cards"); 
-    let cards = document.getElementsByClassName("card");    
     if (grid_display == "none"){        
         grid.style.display = "block"; 
         list.style.display = "none";
-        for(var i = 0; i < cards.length; i++){
-            cards[i].style.width = "100%"; 
-        }
+        setCardWidth();
+        
     } else if (list_display == "none"){          
         grid.style.display = "none"; 
         list.style.display = "block"; 
-        // I need to set the card width according to window width
-        let container_width = window.getComputedStyle(card_container).getPropertyValue("width"); 
-        for(var i = 0; i < cards.length; i++){
-            cards[i].style.width = (parseInt(container_width) - 80) / 4; 
-        }
+        setCardWidth();
     }
 }
 
+function resetAll(){
+    setFontText("");
+    document.getElementById("sample_text").value = ""; 
+    filterFonts(""); 
+    document.getElementById("search_field").value = ""; 
+    document.getElementById("grid_button").style.display = "none"; 
+    document.getElementById("list_button").style.display = "block"; 
+    setCardWidth();
+    change_theme("white");
+    setFontTextSize("20px"); 
+    document.getElementById("fontSizes").value = "20px";  
+}
 
 function init(){
     var cards = document.getElementById("cards");
@@ -195,6 +228,8 @@ function init(){
         }
         cards.appendChild(createcard(new_title, author, new_title));
     }
+    setFontText("Then came the first night of the falling star.");
+    setCardWidth();
     newlink.rel = "stylesheet"; 
     newlink.href = "https://fonts.googleapis.com/css?family=" + fontUrl + "&display=swap";
     document.getElementsByTagName("head")[0].appendChild(newlink);   
@@ -206,6 +241,8 @@ function init(){
         selectFontSize.appendChild(newOption);
     }
     setFontTextSize();
+    widthChangeLayout();
 }
 
 window.onload = init; 
+window.onresize = widthChangeLayout;

@@ -108,15 +108,20 @@ select{
 }
 
 .button_container{
-    width:10%; 
     font-size: 0.8em;
     /* cheap work around to vertically align icons */
     padding-top:4px;
-    text-align: center;
+    width: 10%;
+    display:flex;
+    justify-content: center;
 }
 
-.button_container:hover{
-    cursor:pointer;
+#reset_button{
+    justify-content: center;
+}
+
+.button_container i:hover{
+    cursor: pointer;
 }
 
 #grid_button{
@@ -127,10 +132,6 @@ select{
     display:block;
 }
 
-#reset_button{
-    text-align:end;
-}
-
 #cards{
     margin: 20px 20px;
     display: -webkit-box;
@@ -138,6 +139,7 @@ select{
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
+    flex-flow: row wrap;
     -webkit-flex-flow: row wrap;
     justify-content: space-between;
 }
@@ -152,7 +154,6 @@ select{
     height:200px;
     margin: 10px 10px; 
     padding-top: 10px;
-    width: 200px;
     overflow: hidden;
     
 }

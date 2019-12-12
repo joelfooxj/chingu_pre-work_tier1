@@ -21,20 +21,19 @@
             <div id="input_bar"> 
                 <input id="search_field" type="text" placeholder="Search font" oninput="filterFonts(this.value)"">  
                 <input id="sample_text" type="text" placeholder="Type something" oninput="setFontText(this.value)">
-                <select id = "fontSizes" onchange="setFontTextSize()"></select>
+                <select id = "fontSizes" onchange="setFontTextSize(this.value)"></select>
                 <div id="color_change"> 
                     <div class="circle" id="circle_black" onclick="change_theme('black')"></div>
                     <div class="circle" id="circle_white" onclick="change_theme('white')"></div>
                 </div>
-                <div id="card_display" class="button_container" onclick="toggleCardDisplay()"> 
-                    <i id="list_button" class="fas fa-list-ul"></i>
-                    <i id="grid_button" class="fas fa-border-all"></i>
+                <div id="card_display" class="button_container">
+                    <i id="list_button" class="fas fa-list-ul" onclick="toggleCardDisplay()"></i>
+                    <i id="grid_button" class="fas fa-border-all" onclick="toggleCardDisplay()"></i>
                 </div>
                 <div id="reset_button" class="button_container"> 
-                        <i class="fas fa-redo-alt"></i>
+                    <i class="fas fa-redo-alt" onclick="resetAll()"></i>
                 </div>
             </div>
-
             <div id="cards"></div>
         </content>
 
