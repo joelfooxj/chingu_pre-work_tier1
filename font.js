@@ -217,6 +217,17 @@ function resetAll(){
     document.getElementById("fontSizes").value = "20px";  
 }
 
+function scrollBack(){
+    var op = -1; 
+    var timer = setInterval(function (){
+        if (window.pageYOffset <= 0){
+            clearInterval(timer);
+        }
+        window.scrollBy(0, op);
+        op += op--;
+    }, 15);
+}
+
 function init(){
     var cards = document.getElementById("cards");
     var fontUrl = font_details[0].link;   
@@ -245,16 +256,6 @@ function init(){
     widthChangeLayout();
 }
 
-function scrollBack(){
-    var op = -1; 
-    var timer = setInterval(function (){
-        if (window.pageYOffset <= 0){
-            clearInterval(timer);
-        }
-        window.scrollBy(0, op);
-        op += op--;
-    }, 15);
-}
 
 window.onload = init; 
 window.onresize = widthChangeLayout;
