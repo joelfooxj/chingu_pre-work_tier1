@@ -14,7 +14,6 @@ var font_details = [
 var fontSizeList = ["20px", "24px", "32px", "40px", "60px"];
 
 function createcard(title, name, setFontFamily){
-    let card_container = document.getElementById("cards");     
     var newcard = document.createElement("div");
     newcard.setAttribute("class", "card"); 
     var title_container = document.createElement("div"); 
@@ -26,9 +25,10 @@ function createcard(title, name, setFontFamily){
     font_title.setAttribute("class", "font_title"); 
     var icon_div = document.createElement("div"); 
     var icon = document.createElement("i"); 
-    icon.setAttribute("class", "far fa-plus-circle"); 
+    icon.setAttribute("class", "fas fa-plus-circle"); 
     icon_div.appendChild(icon); 
-    title_container.appendChild(font_title, icon_div); 
+    title_container.appendChild(font_title);
+    title_container.appendChild(icon_div); 
     var font_author = document.createElement("div"); 
     font_author.innerText = name; 
     font_author.setAttribute("class", "font_author"); 
@@ -62,6 +62,7 @@ function change_theme(color){
         font_titles[i].style.color = reverseColor;
         font_texts[i].style.color = reverseColor;
     }
+    document.getElementsByTagName('footer')[0].style.color = reverseColor;
 }
 
 function setFontTextSize(size){
@@ -140,9 +141,9 @@ function setCardWidth(){
         if(window.innerWidth <= this.screen.width * 0.4){
             card_width = "100%";
         } else if(window.innerWidth > this.screen.width * 0.4 && window.innerWidth <= this.screen.width * 0.5){
-            card_width = (parseInt(container_width) - 80) / 2; 
+            card_width = (parseInt(container_width) - (2 * 20)) / 2; 
         } else if(window.innerWidth > this.screen.width * 0.5 && window.innerWidth <= this.screen.width * 0.75){
-            card_width = (parseInt(container_width) - 80) / 3; 
+            card_width = (parseInt(container_width) - (3 * 20)) / 3; 
         } else if(window.innerWidth > this.screen.width * 0.75 && window.innerWidth <= this.screen.width){
             card_width = (parseInt(container_width) - 80) / 4; 
         }
@@ -244,5 +245,26 @@ function init(){
     widthChangeLayout();
 }
 
+function scrollBack(){
+    var op = -1; 
+    var timer = setInterval(function (){
+        if (window.pageYOffset <= 0){
+            clearInterval(timer);
+        }
+        window.scrollBy(0, op);
+        op += op--;
+    }, 15);
+}
+
 window.onload = init; 
 window.onresize = widthChangeLayout;
+window.onscroll = function () {
+    let arrow_button = document.getElementById("arrow_button"); 
+    let separator = document.getElementsByClassName("separator")[0];
+    sep_position = separator.getBoundingClientRect().bottom;
+    if (sep_position > 0){
+        arrow_button.style.display = "none"; 
+    } else {
+        arrow_button.style.display = "block"; 
+    }
+};

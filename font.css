@@ -125,11 +125,11 @@ select{
 }
 
 #grid_button{
-    display:none;
+    display: none;
 }
 
 #list_button{
-    display:block;
+    display: block;
 }
 
 #cards{
@@ -141,12 +141,7 @@ select{
     display: flex;
     flex-flow: row wrap;
     -webkit-flex-flow: row wrap;
-    justify-content: space-between;
-}
-
-#cards:after{
-    content: ""; 
-    flex:auto; 
+    justify-content: flex-start;
 }
 
 .card{
@@ -162,9 +157,14 @@ select{
     font-weight: bold;
 }
 
+.fa-plus-circle{
+    color:lightslategray;
+}
+
 .font_author{
     font-size: 0.8em;
     color: lightslategray;
+    margin-top: 3px;
 }
 
 .font_text{
@@ -173,9 +173,21 @@ select{
     overflow: hidden;
 }
 
+#arrow_button{
+    position: fixed;
+    bottom: 10px; 
+    right: 10px; 
+    color: lightslategray;
+}
+
+#arrow_button i:hover{
+    cursor: pointer;
+}
+
 footer {
     text-align: center;
-    font-size: 0.8em; 
+    font-size: 0.8em;
+    padding: 20px 0px;  
 }
 
 
