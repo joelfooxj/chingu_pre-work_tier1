@@ -1,5 +1,39 @@
-# Chingu Voyage Pre-Work Solo Project (Tier 1): Favorite Fonts
+# Favourite Fonts (Chingu Pre-work Solo Project Tier 1)
+This is a tier 1 implementation of the Favourite Fonts Chingu pre-work solo project.
 
-This is an implementation of the Tier 1 Chingu pre-work solo project 'Favourite Fonts'. 
+## Getting Started
 
- - features here? 
+You can clone this repository or download the files. Ensure source files are in the same directory. 
+
+### Prerequisites
+
+There are no prerequisites necessary, except a browser. 
+
+### Installing
+
+No installation is necessary, simply put the path of the index.html file into your browser URL bar. 
+
+## Deployment
+
+Add additional notes about how to deploy this on a live system
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+Version 1.0 
+
+## Authors
+
+* **Joel Foo** 
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* README template from - [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
+
